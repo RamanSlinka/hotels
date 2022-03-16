@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'https://obmng.dbm.guestline.net/api/hotels?collection-id=OBMNG/'
+    baseURL: 'https://obmng.dbm.guestline.net/api/hotels?collection-id=OBMNG'
 });
 
 export const hotelsAPI = {
@@ -9,7 +9,7 @@ export const hotelsAPI = {
         return instance.get<Array<HotelTypes>>(``)
     },
     getHotelDetails(hotelId: string) {
-        return instance.get<Array<HotelDetailsType>>(`${hotelId}`)
+        return instance.get<Array<HotelDetailsType>>(`hotels?collection-id=OBMNG/${hotelId}`)
     }
 }
 
