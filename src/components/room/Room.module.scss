@@ -1,0 +1,17 @@
+.roomContainer {
+  display: flex;
+  flex-direction: row;
+ // margin-top: 20px;
+  padding: 15px;
+  border: white 2px solid;
+  border-style: solid none none none;
+
+  .infoBlock {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .descriptionBlock {
+    padding-left: 20px;
+  }
+}

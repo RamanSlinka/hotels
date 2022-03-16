@@ -8,9 +8,9 @@ const Header = () => {
         <header className={style.header}>
             <div>
                 <img
-                className={style.headImage}
-                src={image} alt="hotel"/>
-                <div className={style.line}> </div>
+                    className={style.headImage}
+                    src={image} alt="hotel"/>
+                <div className={style.line}></div>
             </div>
             <div className={style.filterBlock}>
                 <div className={style.starsWrapper}>
@@ -19,7 +19,7 @@ const Header = () => {
                     <span><AiFillStar/></span>
                     <span><AiOutlineStar/></span>
                     <span><AiOutlineStar/></span>
-                    </div>
+                </div>
                 <div className={style.adultWrapper}>
                     <p>Adults : </p>
                     <button className={style.button}>+</button>
