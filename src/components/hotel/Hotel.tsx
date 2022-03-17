@@ -4,21 +4,31 @@ import {AiFillStar, AiOutlineStar} from "react-icons/ai";
 import Room from "../room/Room";
 import {fetchHotelsTC} from "../../store/hotelsReducer";
 import {useDispatch, useSelector} from "react-redux";
+import CarouselComponent from "../carousel/CarouselComponent";
+import { AppRootStateType } from '../../store/store';
+import {HotelTypes} from "../../api/api";
 
 const Hotel = () => {
-const data = useSelector<any>(state => state.hotels)
-    const dispatch = useDispatch()
-    console.log(data)
-    useEffect(() => {
-        const thunk = fetchHotelsTC()
-        dispatch(thunk)
+const hotels = useSelector<AppRootStateType, Array<HotelTypes>>(state => state.hotels.hotels)
+    console.log(hotels)
 
-    }, [])
+    const images = hotels[0].images
+    //  console.log(images)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(fetchHotelsTC())
+
+    }, [dispatch])
 
     return (
         <div className={style.container}>
             <div className={style.hotelInfoWrapper}>
-                <div className={style.imageBlock}>Images</div>
+                <div className={style.imageBlock}>
+                        <CarouselComponent images={images }/>
+
+
+                    </div>
                 <div className={style.infoBlock}>
                     <p>Name Hotel</p>
                     <p>Address hotel</p>
