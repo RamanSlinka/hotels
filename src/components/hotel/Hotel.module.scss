@@ -18,6 +18,7 @@
 
     .imageBlock {
       width: 100px;
+      max-height: 100px;
       background-color: antiquewhite;
     }
 
@@ -30,6 +31,7 @@
     .starsBlock {
       position: absolute;
       right: 100px;
+      color: gold;
     }
   }
 

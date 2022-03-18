@@ -9,11 +9,17 @@ import { AppRootStateType } from '../../store/store';
 import {HotelTypes} from "../../api/api";
 
 const Hotel = () => {
+
 const hotels = useSelector<AppRootStateType, Array<HotelTypes>>(state => state.hotels.hotels)
     console.log(hotels)
 
-    const images = hotels[0].images
-    //  console.log(images)
+    const images = hotels[0]?.images
+    console.log(images)
+
+    const name = hotels[0]?.name
+    const address1 = hotels[0]?.address1
+    const address2 = hotels[0]?.address2
+
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -25,13 +31,15 @@ const hotels = useSelector<AppRootStateType, Array<HotelTypes>>(state => state.h
         <div className={style.container}>
             <div className={style.hotelInfoWrapper}>
                 <div className={style.imageBlock}>
-                        <CarouselComponent images={images }/>
+
+                        <CarouselComponent images={hotels[0]?.images }/>
 
 
                     </div>
                 <div className={style.infoBlock}>
-                    <p>Name Hotel</p>
-                    <p>Address hotel</p>
+                    <p>{name}</p>
+                    <p>{address1}</p>
+                    <p>{address2}</p>
                 </div>
                 <div className={style.starsBlock}>
 

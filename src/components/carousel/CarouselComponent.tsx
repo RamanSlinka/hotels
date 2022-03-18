@@ -5,8 +5,13 @@ type ImagesType = {
     url: string
     alt?: string
 }
-
-const CarouselComponent: FC<any> = ({images}) => {
+// props={
+//   key:value
+// }
+type CarouselComponentPropsType={
+    images: Array<ImagesType>
+}
+const CarouselComponent: FC<CarouselComponentPropsType> = ({images}) => {
 
 
     return (
@@ -14,7 +19,7 @@ const CarouselComponent: FC<any> = ({images}) => {
             <Carousel
                 variant="dark"
                 indicators={false}>
-                {images.map((image: ImagesType, index: number) => (
+                {images?.map((image: ImagesType, index: number) => (
 
                     <Carousel.Item>
                         <img
