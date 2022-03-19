@@ -9,7 +9,7 @@ export const hotelsAPI = {
         return instance.get<Array<HotelTypes>>(``)
     },
     getHotelDetails(hotelId: string) {
-        return instance.get<Array<HotelDetailsType>>(`/${hotelId}`)
+        return instance.get<HotelDetailsType>(`/${hotelId}`)
     }
 }
 
@@ -57,7 +57,7 @@ export type HotelDetailsType = {
     ratePlans: Array<RatePlanType>
 }
 
-type RoomType = {
+export type RoomType = {
     id: string
     name: string
     shortDescription: string
@@ -82,4 +82,4 @@ type FacilityType = {
     name: string
 }
 
-type RatePlanType = any
+export type RatePlanType = any
