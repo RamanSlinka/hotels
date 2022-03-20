@@ -9,7 +9,8 @@ export const hotelsAPI = {
         return instance.get<Array<HotelTypes>>(``)
     },
     getHotelDetails(hotelId: string) {
-        return instance.get<HotelDetailsType>(`/${hotelId}`)
+        return instance.get<HotelDetailsType>(`https://obmng.dbm.guestline.net/api/roomRates/OBMNG/${hotelId}`)
+        debugger
     }
 }
 

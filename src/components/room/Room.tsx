@@ -1,17 +1,22 @@
-import React from 'react';
+import React, {FC} from 'react';
 import style from './Room.module.scss';
 
-
-const Room = () => {
+type RoomPropsType = {
+    description: string
+    name: string
+    adult: number
+    children: number
+}
+const Room:FC<RoomPropsType> = ({description,name,adult,children}) => {
     return (
         <div className={style.roomContainer}>
             <div className={style.infoBlock}>
-                <p>Room name</p>
-                <p>Adult: 2</p>
-                <p>Children: 0</p>
+                <p>{name}</p>
+                <p>Adult: {adult}</p>
+                <p>Children: {children}</p>
             </div>
             <div className={style.descriptionBlock}>
-                <p>description</p>
+                <p>{description}</p>
             </div>
         </div>
     );

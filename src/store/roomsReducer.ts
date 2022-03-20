@@ -26,10 +26,12 @@ export const roomsReducer = (state = initialState, action: ActionType): initialS
                     ratePlans: []
                 }
             })
+
             return copyState
         }
 
         case  'SET-ROOMS':
+
             return {...state, [action.hotelId]: {...state[action.hotelId], rooms: action.rooms}}
 
         default:
@@ -40,17 +42,19 @@ export const roomsReducer = (state = initialState, action: ActionType): initialS
 
 //action
 export const setRoomsAC = (rooms: Array<RoomType>, hotelId: string) =>
-    ({type: 'SET-ROOMS', rooms, hotelId} as const);
+    ({type: 'SET-ROOMS', rooms: rooms, hotelId} as const);
 
 
 //thunk
 export const fetchRoomsTC = (hotelId: string): AppThunkType => {
     return (dispatch) => {
         hotelsAPI.getHotelDetails(hotelId)
+
             .then((res) => {
                 const rooms = res.data.rooms
                 dispatch(setRoomsAC(rooms, hotelId))
             })
+
             .catch((error) => {
                 console.log(error)
             })
