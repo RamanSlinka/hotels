@@ -1,62 +1,69 @@
 import React, {useEffect} from 'react';
 import style from './Hotel.module.scss';
 import {AiFillStar, AiOutlineStar} from "react-icons/ai";
-import Room from "../room/Room";
 import {fetchHotelsTC} from "../../store/hotelsReducer";
 import {useDispatch, useSelector} from "react-redux";
 import CarouselComponent from "../carousel/CarouselComponent";
-import { AppRootStateType } from '../../store/store';
+import {AppRootStateType} from '../../store/store';
 import {HotelTypes} from "../../api/api";
+import RoomsWrapper from "../room/RoomsWrapper";
 
 const Hotel = () => {
 
-const hotels = useSelector<AppRootStateType, Array<HotelTypes>>(state => state.hotels.hotels)
-    console.log(hotels)
+    const hotels = useSelector<AppRootStateType, Array<HotelTypes>>(state => state.hotels.hotels)
+    console.log('hotels', hotels)
 
-    const images = hotels[0]?.images
-    console.log(images)
-
-    const name = hotels[0]?.name
-    const address1 = hotels[0]?.address1
-    const address2 = hotels[0]?.address2
 
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(fetchHotelsTC())
+        // dispatch(fetchRoomsTC(hotels.id))
 
     }, [dispatch])
 
+
     return (
-        <div className={style.container}>
-            <div className={style.hotelInfoWrapper}>
-                <div className={style.imageBlock}>
+        <>
+            {hotels?.map((hotel: HotelTypes) => (
 
-                        <CarouselComponent images={hotels[0]?.images }/>
+                <div
+                    key={hotel.id}
+                    className={style.container}>
+                    <div className={style.hotelInfoWrapper}>
+                        <div className={style.imageBlock}>
+
+                            <CarouselComponent images={hotel.images}/>
 
 
+                        </div>
+                        <div className={style.infoBlock}>
+                            <p>{hotel.name}</p>
+                            <p>{hotel.address1}</p>
+                            <p>{hotel.address2}</p>
+                        </div>
+                        <div className={style.starsBlock}>
+
+
+                                <div>
+                                    <span>{Number(hotel.starRating) >= 1 ? <AiFillStar/> : <AiOutlineStar/>}</span>
+                                    <span>{Number(hotel.starRating) >= 2 ? <AiFillStar/> : <AiOutlineStar/>}</span>
+                                    <span>{Number(hotel.starRating) >= 3 ? <AiFillStar/> : <AiOutlineStar/>}</span>
+                                    <span>{Number(hotel.starRating) >= 4 ? <AiFillStar/> : <AiOutlineStar/>}</span>
+                                    <span>{Number(hotel.starRating) >= 5 ? <AiFillStar/> : <AiOutlineStar/>}</span>
+                                </div>
+
+
+                        </div>
                     </div>
-                <div className={style.infoBlock}>
-                    <p>{name}</p>
-                    <p>{address1}</p>
-                    <p>{address2}</p>
+                    <div className={style.roomInfoWrapper}>
+                        <RoomsWrapper id={hotel.id} />
+                    </div>
                 </div>
-                <div className={style.starsBlock}>
+            ))
 
-                        <span><AiFillStar/></span>
-                        <span><AiFillStar/></span>
-                        <span><AiFillStar/></span>
-                        <span><AiOutlineStar/></span>
-                        <span><AiOutlineStar/></span>
-
-                </div>
-            </div>
-            <div className={style.roomInfoWrapper}>
-                <Room/>
-                <Room/>
-                <Room/>
-            </div>
-        </div>
+            }
+        </>
     );
 };
 

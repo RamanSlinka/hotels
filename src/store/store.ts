@@ -6,7 +6,7 @@ import {roomsReducer, SetRoomsActionType} from "./roomsReducer";
 
 const rootReducer = combineReducers({
     hotels: hotelsReducer,
-    rooms: roomsReducer
+    hotelDetails: roomsReducer
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
