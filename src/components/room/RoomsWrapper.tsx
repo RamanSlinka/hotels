@@ -7,13 +7,15 @@ import {RoomType} from "../../api/api";
 
 type RoomsWrapperPropsType = {
     id: string
+    adult: number
+    child: number
 }
 
 const RoomsWrapper = (props: RoomsWrapperPropsType) => {
 
       const rooms = useSelector<AppRootStateType, any>(state => state.hotelDetails)
-    // console.log('rooms', rooms)
-    console.log('rooms[props.id]', rooms[props.id].rooms)
+
+    console.log(`rooms[${props.id}]`, rooms[props.id].rooms)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -23,7 +25,10 @@ const RoomsWrapper = (props: RoomsWrapperPropsType) => {
 
     return (
         <>
-            {rooms[props.id].rooms.map((room: any) => {
+            {rooms[props.id].rooms
+                .filter((room: RoomType) => room.occupancy.maxAdults >= props.adult && props.adult !==0)
+                .filter((room: RoomType) => room.occupancy.maxChildren >= props.child )
+                .map((room: RoomType) => {
                 return <Room
                 description={room.longDescription}
                 name={room.name}

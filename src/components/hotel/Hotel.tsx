@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {FC, useEffect} from 'react';
 import style from './Hotel.module.scss';
 import {AiFillStar, AiOutlineStar} from "react-icons/ai";
 import {fetchHotelsTC} from "../../store/hotelsReducer";
@@ -8,7 +8,7 @@ import {AppRootStateType} from '../../store/store';
 import {HotelTypes} from "../../api/api";
 import RoomsWrapper from "../room/RoomsWrapper";
 
-const Hotel = () => {
+const Hotel:FC<any> = ({adult, child}) => {
 
     const hotels = useSelector<AppRootStateType, Array<HotelTypes>>(state => state.hotels.hotels)
     console.log('hotels', hotels)
@@ -18,8 +18,6 @@ const Hotel = () => {
 
     useEffect(() => {
         dispatch(fetchHotelsTC())
-        // dispatch(fetchRoomsTC(hotels.id))
-
     }, [dispatch])
 
 
@@ -38,7 +36,7 @@ const Hotel = () => {
 
                         </div>
                         <div className={style.infoBlock}>
-                            <p>{hotel.name}</p>
+                            <h2>{hotel.name}</h2>
                             <p>{hotel.address1}</p>
                             <p>{hotel.address2}</p>
                         </div>
@@ -57,7 +55,10 @@ const Hotel = () => {
                         </div>
                     </div>
                     <div className={style.roomInfoWrapper}>
-                        <RoomsWrapper id={hotel.id} />
+                        <RoomsWrapper id={hotel.id}
+                                      adult={adult}
+                                      child={child}
+                        />
                     </div>
                 </div>
             ))
