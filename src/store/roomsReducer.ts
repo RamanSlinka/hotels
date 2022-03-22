@@ -26,13 +26,12 @@ export const roomsReducer = (state = initialState, action: ActionType): initialS
                     ratePlans: []
                 }
             })
-
             return copyState
         }
 
         case  'SET-ROOMS':
-
-            return {...state, [action.hotelId]: {...state[action.hotelId], rooms: action.rooms}}
+            return {...state, [action.hotelId]:
+                    {...state[action.hotelId], rooms: action.rooms}}
 
         default:
             return state

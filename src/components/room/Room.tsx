@@ -7,11 +7,12 @@ type RoomPropsType = {
     adult: number
     children: number
 }
-const Room:FC<RoomPropsType> = ({description,name,adult,children}) => {
+const Room: FC<RoomPropsType> = ({description, name,
+                                     adult, children}) => {
     return (
         <div className={style.roomContainer}>
             <div className={style.infoBlock}>
-                <p>{name}</p>
+                <h4>{name}</h4>
                 <p>Adult: {adult}</p>
                 <p>Children: {children}</p>
             </div>
