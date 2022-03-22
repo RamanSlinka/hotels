@@ -3,7 +3,7 @@ import Room from "./Room";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchRoomsTC} from "../../store/roomsReducer";
 import {AppRootStateType} from "../../store/store";
-import {RoomType} from "../../api/api";
+import {HotelDetailsType, RoomType} from "../../api/api";
 
 type RoomsWrapperPropsType = {
     id: string
@@ -11,11 +11,17 @@ type RoomsWrapperPropsType = {
     child: number
 }
 
+type RoomsByIdType = {
+    [key: string]: HotelDetailsType
+}
+
 const RoomsWrapper = (props: RoomsWrapperPropsType) => {
 
-      const rooms = useSelector<AppRootStateType, any>(state => state.hotelDetails)
+    const rooms = useSelector<AppRootStateType, RoomsByIdType>(state => state.hotelDetails)
 
+    console.log(rooms)
     console.log(`rooms[${props.id}]`, rooms[props.id].rooms)
+
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -26,16 +32,16 @@ const RoomsWrapper = (props: RoomsWrapperPropsType) => {
     return (
         <>
             {rooms[props.id].rooms
-                .filter((room: RoomType) => room.occupancy.maxAdults >= props.adult && props.adult !==0)
-                .filter((room: RoomType) => room.occupancy.maxChildren >= props.child )
+                .filter((room: RoomType) => room.occupancy.maxAdults >= props.adult && props.adult !== 0)
+                .filter((room: RoomType) => room.occupancy.maxChildren >= props.child)
                 .map((room: RoomType) => {
-                return <Room
-                description={room.longDescription}
-                name={room.name}
-                adult={room.occupancy.maxAdults}
-                children={room.occupancy.maxChildren}
-                />
-            })}
+                    return <Room
+                        description={room.longDescription}
+                        name={room.name}
+                        adult={room.occupancy.maxAdults}
+                        children={room.occupancy.maxChildren}
+                    />
+                })}
         </>
     );
 };

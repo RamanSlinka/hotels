@@ -14,13 +14,15 @@ const CarouselComponent: FC<CarouselComponentPropsType> = ({images}) => {
         <>
             <Carousel
                 indicators={false}>
+                interval={7000}
+                pause={'false'}
                 {images?.map((image: ImagesType, index: number) => (
 
                     <Carousel.Item
                         key={index}
                     >
                         <img
-                            style={{height: "100px"}}
+                            style={{height: "200px"}}
                             src={image.url}
                             alt=" slide"
                         />

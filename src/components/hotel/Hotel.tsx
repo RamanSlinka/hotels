@@ -8,11 +8,15 @@ import {AppRootStateType} from '../../store/store';
 import {HotelTypes} from "../../api/api";
 import RoomsWrapper from "../room/RoomsWrapper";
 
-const Hotel:FC<any> = ({adult, child}) => {
+type HotelPropsType = {
+    ratingValue: number
+    adult: number
+    child: number
+}
+
+const Hotel: FC<HotelPropsType> = ({ratingValue, adult, child}) => {
 
     const hotels = useSelector<AppRootStateType, Array<HotelTypes>>(state => state.hotels.hotels)
-    console.log('hotels', hotels)
-
 
     const dispatch = useDispatch()
 
@@ -23,27 +27,35 @@ const Hotel:FC<any> = ({adult, child}) => {
 
     return (
         <>
-            {hotels?.map((hotel: HotelTypes) => (
+            {hotels.filter((hotel: HotelTypes) => Number(hotel.starRating) >= ratingValue)
+                .map((hotel: HotelTypes) => (
 
-                <div
-                    key={hotel.id}
-                    className={style.container}>
-                    <div className={style.hotelInfoWrapper}>
-                        <div className={style.imageBlock}>
+                    <div
+                        key={hotel.id}
+                        className={style.container}>
+                        <div className={style.hotelInfoWrapper}>
+                            <div className={style.imageBlock}>
 
-                            <CarouselComponent images={hotel.images}/>
+                                <CarouselComponent images={hotel.images}/>
 
 
-                        </div>
-                        <div className={style.infoBlock}>
-                            <h2>{hotel.name}</h2>
-                            <p>{hotel.address1}</p>
-                            <p>{hotel.address2}</p>
-                        </div>
-                        <div className={style.starsBlock}>
+                            </div>
+                            <div className={style.infoBlock}>
+                                <h2>{hotel.name}</h2>
+                                <p>{hotel.address1}</p>
+                                <p>{hotel.address2}</p>
+                            </div>
+                            <div className={style.starsBlock}>
 
 
                                 <div>
+
+                                    {/*<Star selected={Number(hotel.starRating) >= 1}  />*/}
+                                    {/*<Star selected={Number(hotel.starRating) >= 2} />*/}
+                                    {/*<Star selected={Number(hotel.starRating) >= 3} />*/}
+                                    {/*<Star selected={Number(hotel.starRating) >= 4} />*/}
+                                    {/*<Star selected={Number(hotel.starRating) >= 5} />*/}
+
                                     <span>{Number(hotel.starRating) >= 1 ? <AiFillStar/> : <AiOutlineStar/>}</span>
                                     <span>{Number(hotel.starRating) >= 2 ? <AiFillStar/> : <AiOutlineStar/>}</span>
                                     <span>{Number(hotel.starRating) >= 3 ? <AiFillStar/> : <AiOutlineStar/>}</span>
@@ -52,16 +64,16 @@ const Hotel:FC<any> = ({adult, child}) => {
                                 </div>
 
 
+                            </div>
+                        </div>
+                        <div className={style.roomInfoWrapper}>
+                            <RoomsWrapper id={hotel.id}
+                                          adult={adult}
+                                          child={child}
+                            />
                         </div>
                     </div>
-                    <div className={style.roomInfoWrapper}>
-                        <RoomsWrapper id={hotel.id}
-                                      adult={adult}
-                                      child={child}
-                        />
-                    </div>
-                </div>
-            ))
+                ))
 
             }
         </>

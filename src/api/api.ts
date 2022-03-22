@@ -1,16 +1,14 @@
 import axios from "axios";
 
-const instance = axios.create({
-    baseURL: 'https://obmng.dbm.guestline.net/api/hotels?collection-id=OBMNG'
-});
-
 export const hotelsAPI = {
     getHotels() {
-        return instance.get<Array<HotelTypes>>(``)
+        return axios
+            .get<Array<HotelTypes>>('https://obmng.dbm.guestline.net/api/hotels?collection-id=OBMNG')
     },
     getHotelDetails(hotelId: string) {
-        return instance.get<HotelDetailsType>(`https://obmng.dbm.guestline.net/api/roomRates/OBMNG/${hotelId}`)
-        debugger
+        return axios
+            .get<HotelDetailsType>(`https://obmng.dbm.guestline.net/api/roomRates/OBMNG/${hotelId}`)
+
     }
 }
 
