@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import {Carousel} from 'react-bootstrap';
+import style from '../hotel/Hotel.module.scss';
 
 type ImagesType = {
     url: string
@@ -13,16 +14,16 @@ const CarouselComponent: FC<CarouselComponentPropsType> = ({images}) => {
     return (
         <>
             <Carousel
-                indicators={false}>
                 interval={7000}
-                pause={'false'}
+                indicators={false}>
+
                 {images?.map((image: ImagesType, index: number) => (
 
                     <Carousel.Item
                         key={index}
                     >
                         <img
-                            style={{height: "200px"}}
+                            className={style.carouselImage}
                             src={image.url}
                             alt=" slide"
                         />

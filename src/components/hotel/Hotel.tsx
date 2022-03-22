@@ -38,7 +38,6 @@ const Hotel: FC<HotelPropsType> = ({ratingValue, adult, child}) => {
 
                                 <CarouselComponent images={hotel.images}/>
 
-
                             </div>
                             <div className={style.infoBlock}>
                                 <h2>{hotel.name}</h2>
@@ -46,9 +45,6 @@ const Hotel: FC<HotelPropsType> = ({ratingValue, adult, child}) => {
                                 <p>{hotel.address2}</p>
                             </div>
                             <div className={style.starsBlock}>
-
-
-                                <div>
 
                                     {/*<Star selected={Number(hotel.starRating) >= 1}  />*/}
                                     {/*<Star selected={Number(hotel.starRating) >= 2} />*/}
@@ -61,8 +57,6 @@ const Hotel: FC<HotelPropsType> = ({ratingValue, adult, child}) => {
                                     <span>{Number(hotel.starRating) >= 3 ? <AiFillStar/> : <AiOutlineStar/>}</span>
                                     <span>{Number(hotel.starRating) >= 4 ? <AiFillStar/> : <AiOutlineStar/>}</span>
                                     <span>{Number(hotel.starRating) >= 5 ? <AiFillStar/> : <AiOutlineStar/>}</span>
-                                </div>
-
 
                             </div>
                         </div>
