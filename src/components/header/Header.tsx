@@ -1,11 +1,25 @@
 import React, {FC} from 'react';
 import image from '../../assets/image_hotel.jpg';
 import style from './Header.module.scss';
-import {AiFillStar, AiOutlineStar} from "react-icons/ai";
+import Star from '../star/Star';
 
-const Header:FC<any> = ({increment, adult, decrement,child, incrementChild, decrementChild}) => {
+type HeaderPropsType = {
+    value: number
+    onClick: (value: number) => void
+    adult: number
+    incrementAdult: () => void
+    decrementAdult: () => void
+    child: number
+    incrementChild: () => void
+    decrementChild: () => void
+}
 
-
+const Header: FC<HeaderPropsType> = ({
+                             value, onClick,
+                             incrementAdult, adult,
+                             decrementAdult, child,
+                             incrementChild, decrementChild
+                         }) => {
 
 
     return (
@@ -17,36 +31,43 @@ const Header:FC<any> = ({increment, adult, decrement,child, incrementChild, decr
                 <div className={style.line}></div>
             </div>
             <div className={style.filterBlock}>
+
                 <div className={style.starsWrapper}>
-                    <span><AiFillStar/></span>
-                    <span><AiFillStar/></span>
-                    <span><AiFillStar/></span>
-                    <span><AiOutlineStar/></span>
-                    <span><AiOutlineStar/></span>
+                    <Star selected={value > 0} onClick={onClick} value={1}/>
+                    <Star selected={value > 1} onClick={onClick} value={2}/>
+                    <Star selected={value > 2} onClick={onClick} value={3}/>
+                    <Star selected={value > 3} onClick={onClick} value={4}/>
+                    <Star selected={value > 4} onClick={onClick} value={5}/>
                 </div>
+
                 <div className={style.adultWrapper}>
                     <p>Adults : </p>
                     <button className={style.button}
-                    onClick={increment}
-                    >+</button>
+                            onClick={incrementAdult}
+                    >+
+                    </button>
                     <p>{adult}</p>
                     <button className={style.button}
-                           onClick={decrement}
-                    >-</button>
+                            onClick={decrementAdult}
+                    >-
+                    </button>
                 </div>
                 <div className={style.childrenWrapper}>
                     <p>Children : </p>
                     <button className={style.button}
-                    onClick={incrementChild}
-                    >+</button>
+                            onClick={incrementChild}
+                    >+
+                    </button>
                     <p>{child}</p>
                     <button className={style.button}
-                    onClick={decrementChild}
-                    >-</button>
+                            onClick={decrementChild}
+                    >-
+                    </button>
                 </div>
             </div>
         </header>
     );
 };
+
 
 export default Header;
