@@ -3,7 +3,6 @@
   flex-direction: row;
   justify-content: flex-start;
   color: white;
- // margin-top: 20px;
   padding: 15px;
   border: white 2px solid;
   border-style: solid none none none;
@@ -13,17 +12,30 @@
     flex-direction: column;
     min-width: 200px;
     align-items: flex-start;
+    @media screen and (max-width: 780px) {
+      font-size: 13px;
+      min-width: 150px;
+    }
+    @media screen and (max-width: 600px) {
+      font-size: 11px;
+      min-width: 100px;
+    }
 
-    h4{
+    h4 {
       margin-bottom: 12px;
       font-size: 20px;
       flex-wrap: inherit;
-
+      @media screen and (max-width: 780px) {
+        font-size: 15px;
+      }
     }
   }
 
   .descriptionBlock {
     padding-left: 20px;
     align-items: flex-start;
+    @media screen and (max-width: 780px) {
+      font-size: 13px;
+    }
   }
 }
