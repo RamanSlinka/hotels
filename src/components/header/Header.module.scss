@@ -1,9 +1,16 @@
 .header {
   position: relative;
-
   .headImage {
     width: 100%;
     height: 250px;
+    object-fit: cover;
+
+    @media screen and (max-width: 840px) {
+      height: 150px;
+    }
+    @media screen and (max-width: 400px) {
+      height: 100px;
+    }
   }
 
   .line {
@@ -15,47 +22,87 @@
 
   .filterBlock {
     position: absolute;
-    top: 236px;
+    top: 230px;
     left: 25%;
 
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
 
     border: white 4px solid;
     color: white;
     background-color: #282c34;
     width: 50%;
-    height: 35px;
+    height: 45px;
+
+    @media screen and (max-width: 900px) {
+      width: 60%;
+      left: 20%;
+    }
+    @media screen and (max-width: 840px) {
+      top: 130px;
+    }
+    @media screen and (max-width: 550px) {
+      width: 70%;
+      left: 15%;
+    }
+    @media screen and (max-width: 400px) {
+      top: 80px;
+      width: 90%;
+      left: 5%;
+    }
 
     .starsWrapper {
-      min-height: 10em;
-      display: table-cell;
-      vertical-align: middle;
-      span{
+      display: flex;
+
+
+      span {
+        display: flex;
         color: gold;
-        font-size: 20px;
-        margin: 0 auto;
+        font-size: 25px;
+
+        @media screen and (max-width: 840px) {
+          font-size: 20px;
+        }
+        @media screen and (max-width: 700px) {
+          font-size: 15px;
+        }
       }
     }
 
     .adultWrapper {
       display: flex;
       flex-direction: row;
+      @media screen and (max-width: 840px) {
+        font-size: 14px;
+      }
+      @media screen and (max-width: 715px) {
+        font-size: 12px;
+      }
     }
 
     .childrenWrapper {
       display: flex;
       flex-direction: row;
+      @media screen and (max-width: 840px) {
+        font-size: 14px;
+      }
+      @media screen and (max-width: 715px) {
+        font-size: 12px;
+      }
     }
 
     .button {
-      border: 0;
-      border-radius: 10px;
-      width: 20px;
-      height: 20px;
-      margin: 3px;
-      text-align: center;
+      font-size: 25px;
+      margin: 0 5px;
+      @media screen and (max-width: 840px) {
+        font-size: 20px;
+      }
+      @media screen and (max-width: 700px) {
+        font-size: 15px;
+        margin: 2px 2px;
+      }
     }
   }
 }
