@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import image from '../../assets/image_hotel.jpg';
 import style from './Header.module.scss';
 import Star from '../star/Star';
+import { AiOutlineMinusCircle, AiOutlinePlusCircle} from "react-icons/ai";
 
 type HeaderPropsType = {
     value: number
@@ -15,11 +16,11 @@ type HeaderPropsType = {
 }
 
 const Header: FC<HeaderPropsType> = ({
-                             value, onClick,
-                             incrementAdult, adult,
-                             decrementAdult, child,
-                             incrementChild, decrementChild
-                         }) => {
+                                         value, onClick,
+                                         incrementAdult, adult,
+                                         decrementAdult, child,
+                                         incrementChild, decrementChild
+                                     }) => {
 
 
     return (
@@ -42,27 +43,24 @@ const Header: FC<HeaderPropsType> = ({
 
                 <div className={style.adultWrapper}>
                     <p>Adults : </p>
-                    <button className={style.button}
-                            onClick={incrementAdult}
-                    >+
-                    </button>
+                    <AiOutlinePlusCircle className={style.button}
+                                         onClick={incrementAdult}/>
                     <p>{adult}</p>
-                    <button className={style.button}
-                            onClick={decrementAdult}
-                    >-
-                    </button>
+                    <AiOutlineMinusCircle className={style.button}
+                                          onClick={decrementAdult}/>
+
                 </div>
                 <div className={style.childrenWrapper}>
                     <p>Children : </p>
-                    <button className={style.button}
-                            onClick={incrementChild}
-                    >+
-                    </button>
+                    <AiOutlinePlusCircle
+                        className={style.button}
+                        onClick={incrementChild}/>
+
                     <p>{child}</p>
-                    <button className={style.button}
-                            onClick={decrementChild}
-                    >-
-                    </button>
+                    <AiOutlineMinusCircle
+                        className={style.button}
+                        onClick={decrementChild}/>
+
                 </div>
             </div>
         </header>

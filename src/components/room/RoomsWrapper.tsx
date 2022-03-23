@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {FC, useEffect} from 'react';
 import Room from "./Room";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchRoomsTC} from "../../store/roomsReducer";
@@ -15,25 +15,22 @@ type RoomsByIdType = {
     [key: string]: HotelDetailsType
 }
 
-const RoomsWrapper = (props: RoomsWrapperPropsType) => {
+const RoomsWrapper:FC<RoomsWrapperPropsType> = ({   id,adult, child} ) => {
 
     const rooms = useSelector<AppRootStateType, RoomsByIdType>(state => state.hotelDetails)
-
-    console.log(rooms)
-    console.log(`rooms[${props.id}]`, rooms[props.id].rooms)
 
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(fetchRoomsTC(props.id))
+        dispatch(fetchRoomsTC(id))
     }, [dispatch])
 
 
     return (
         <>
-            {rooms[props.id].rooms
-                .filter((room: RoomType) => room.occupancy.maxAdults >= props.adult && props.adult !== 0)
-                .filter((room: RoomType) => room.occupancy.maxChildren >= props.child)
+            {rooms[id].rooms
+                .filter((room: RoomType) => room.occupancy.maxAdults >= adult && adult !== 0)
+                .filter((room: RoomType) => room.occupancy.maxChildren >= child)
                 .map((room: RoomType) => {
                     return <Room
                         description={room.longDescription}

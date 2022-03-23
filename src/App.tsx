@@ -4,7 +4,6 @@ import Header from "./components/header/Header";
 import Hotel from "./components/hotel/Hotel";
 
 function App() {
-
     const [ratingValue, setRatingValue] = useState<number>(0)
     const [adult, setAdult] = useState<number>(0);
     const [child, setChild] = useState<number>(0);
@@ -44,8 +43,8 @@ function App() {
             <Hotel
                 ratingValue={ratingValue}
                 adult={adult}
-                child={child}/>
-
+                child={child}
+            />
         </div>
     );
 }
