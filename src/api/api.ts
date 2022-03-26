@@ -81,4 +81,33 @@ type FacilityType = {
     name: string
 }
 
-export type RatePlanType = any
+export type RatePlanType = RatePlanObject1Type | RatePlanObject2Type
+
+type RatePlanObject1Type =
+    {
+        id: "string",
+        shortDescription: "string",
+        longDescription?: "string",
+        prePayment: "string",
+        cancellationPolicy: {
+            name: "string",
+            text: "string",
+            penalty: "string",
+            applicable: "string",
+            amount: number,
+            hour?: "string"
+            days?: number
+        }
+        prePaymentValue?: number,
+        prePaymentIsPercentag?: boolean
+    }
+type RatePlanObject2Type =
+    {
+        id: "string",
+        shortDescription: "string",
+        prePayment: "string"
+    }
+
+
+
+
